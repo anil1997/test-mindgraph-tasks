@@ -25,26 +25,7 @@ const PokedexScreen = () => {
   const [sortType, setSortType] = useState('ASC');
   const [filteredList, setFilteredList] = useState([]);
   const [isFiltered, setIsFiltered] = useState(false);
-  const [detailsChart, setDetailsChart] = useState({
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-    datasets: [
-      {
-        data: [20, 45, 28, 80, 99, 43],
-      },
-    ],
-  });
-  const chartConfig = {
-    backgroundGradientFrom: '#1E2923',
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: '#08130D',
-    backgroundGradientToOpacity: 0.5,
-    color: (opacity = 1) => '#000000',
-    // color:"#FFFFFF",
-    strokeWidth: 2, // optional, default 3
-    barPercentage: 0.9,
-    useShadowColorFromDataset: false, // optional
-  };
-
+  const [detailsChart, setDetailsChart] = useState({});
   const response = useSelector(state => state);
   const dispatch = useDispatch();
   const {isLoading, data, error, pokemonList, pokemonDetails} =
