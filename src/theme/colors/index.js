@@ -5,7 +5,8 @@ const Colors = {
   clear: 'rgba(52, 52, 52, 0.0)',
 
   white: '#FFF',
-  
+  red: '#F00',
+  lightBlack: '#00000099'
 
 };
 

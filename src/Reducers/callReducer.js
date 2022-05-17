@@ -1,10 +1,12 @@
+import React from "react"
 import { CALL_ATTEMPT, CALL_SUCCESSFUL, CALL_FAILED } from "../config"
 
 const initialState = {
     data: {},
+    pokemonList: [],
+    pokemonDetails: {},
     isLoading: false,
-    error: false,
-    noInternet: false
+    error: false
 }
 
 const callReducer = (state = initialState, action) => {
@@ -18,8 +20,10 @@ const callReducer = (state = initialState, action) => {
         case CALL_SUCCESSFUL:
             return {
                 ...state,
+                data: action.data,
+                pokemonList: action.status === 'list' ? [...state.pokemonList, ...action.data.results] : state.pokemonList,
+                pokemonDetails: action.status !== 'list' ? action.data : state.pokemonDetails,
                 isLoading: false,
-                loggedIn: true
             }
         case CALL_FAILED:
             return {

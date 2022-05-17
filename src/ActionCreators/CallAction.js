@@ -1,15 +1,18 @@
 import { CALL_ATTEMPT, CALL_SUCCESSFUL, CALL_FAILED } from '../config'
-import { CALL_API } from '../apibase/NetworkCall';
+import { CALL_API } from '../apibase/networkCall';
 
-export const loadingIn = () => {
+export const loadingStart  = () => {
     return {
-        type:CALL_ATTEMPT,
+        type: CALL_ATTEMPT,
     }
 }
 
-export const loadedIn = () => {
+export const dataFetched = (data, status) => {
+    console
     return {
         type: CALL_SUCCESSFUL,
+        data: data,
+        status: status
     }
 }
 
@@ -19,14 +22,14 @@ export const loadingFailed = () => {
     }
 }
 
-export const callAPI = (url) => {
+export const callAPI = (url, status) => {
     return async (dispatch) => {
-        dispatch(loadingIn())
 
+        dispatch(loadingStart())
         CALL_API(url).then((res) => {
             if(res.status == 200){
-                dispatch(loadedIn())
-            }else{
+                dispatch(dataFetched(res?.data, status))
+            } else {
                 dispatch(loadingFailed())
             }
         }).catch((err) => {
